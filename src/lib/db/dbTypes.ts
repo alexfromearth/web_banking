@@ -14,6 +14,14 @@ export interface UsersTable {
   currency: Currency;
 }
 
+export interface SessionsTable {
+  id: Generated<number>;
+  session_token: string;
+  user_id: number;
+  expires_at: string;
+}
+
 export interface DatabaseTables {
   users: UsersTable;
+  sessions: SessionsTable;
 }

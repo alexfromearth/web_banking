@@ -15,6 +15,24 @@ const seedUsers = [
     balance: 5550,
     currency: Currency.EUR,
   },
+  {
+    username: 'test3@test.com',
+    password: 'anotherstrongpassword3',
+    balance: 5550,
+    currency: Currency.USD,
+  },
+  {
+    username: 'test4@test.com',
+    password: 'anotherstrongpassword4',
+    balance: 5550,
+    currency: Currency.EUR,
+  },
+  {
+    username: 'test5@test.com',
+    password: 'anotherstrongpassword5',
+    balance: 5550,
+    currency: Currency.USD,
+  },
 ];
 
 async function seed() {
