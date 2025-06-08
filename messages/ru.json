@@ -6,7 +6,8 @@
     "submitButton": "Войти",
     "submitButtonLoading": "Вход...",
     "invalidUsername": "Введите корректный email",
-    "invalidPassword": "Введите корректный пароль"
+    "invalidPassword": "Введите корректный пароль",
+    "invalidCredentials": "Неверное имя пользователя или пароль"
   },
   "Navbar": {
     "signedInAs": "Вы вошли как:",

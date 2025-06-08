@@ -32,7 +32,7 @@ export const login = async (_state: FormState, formData: FormData) => {
     const user = await dbInstance.selectFrom('users').where('username', '=', username).selectAll().executeTakeFirst();
 
     if (!user || !(await comparePassword(password, user.password_hash))) {
-      return { message: 'Invalid username or password' };
+      return { message: t('invalidCredentials') };
     }
 
     const sessionToken = crypto.randomBytes(32).toString('hex');

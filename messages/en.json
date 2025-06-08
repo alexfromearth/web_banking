@@ -6,7 +6,8 @@
     "submitButton": "Log In",
     "submitButtonLoading": "Logging in...",
     "invalidUsername": "Please enter a valid email address",
-    "invalidPassword": "Please enter a valid password"
+    "invalidPassword": "Please enter a valid password",
+    "invalidCredentials": "Invalid username or password"
   },
   "Navbar": {
     "signedInAs": "Signed in as:",
