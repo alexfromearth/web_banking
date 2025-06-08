@@ -5,32 +5,32 @@ import { hashPassword } from '@/lib/kysely/password';
 const seedUsers = [
   {
     username: 'test@test.com',
-    password: 'supersecretpassword1',
-    balance: 10000,
+    password: 'test',
+    balance: 10000000,
     currency: Currency.USD,
   },
   {
     username: 'test2@test.com',
-    password: 'anotherstrongpassword2',
-    balance: 5550,
+    password: 'test',
+    balance: 666000,
     currency: Currency.EUR,
   },
   {
     username: 'test3@test.com',
-    password: 'anotherstrongpassword3',
-    balance: 5550,
+    password: 'test',
+    balance: 555000,
     currency: Currency.USD,
   },
   {
     username: 'test4@test.com',
-    password: 'anotherstrongpassword4',
-    balance: 5550,
+    password: 'test',
+    balance: 444000,
     currency: Currency.EUR,
   },
   {
     username: 'test5@test.com',
-    password: 'anotherstrongpassword5',
-    balance: 5550,
+    password: 'test',
+    balance: 333000,
     currency: Currency.USD,
   },
 ];
