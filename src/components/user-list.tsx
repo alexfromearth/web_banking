@@ -17,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { ArrowRightLeft } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface UserListProps {
   users: User[];
@@ -24,6 +25,7 @@ interface UserListProps {
 }
 
 export function UserList({ users, currentUser }: UserListProps) {
+  const t = useTranslations('TransferDialog');
   const dispatch = useAppDispatch();
 
   const { isTransferModalOpen, transferTargetUser } = useAppSelector(state => state.modals);
@@ -74,9 +76,9 @@ export function UserList({ users, currentUser }: UserListProps) {
     try {
       await transferMoneyAction(transferTargetUser.id, amountInCents);
       dispatch(closeTransferModal());
-      toast.success('Success', { description: 'Successfully transferred' });
+      toast.success(t('toastSuccessTitle'), { description: t('toastSuccessDescription') });
     } catch (error) {
-      toast.error('Error', { description: (error as Error).message });
+      toast.error(t('toastErrorTitle'), { description: (error as Error).message });
     }
   }
 
@@ -94,8 +96,7 @@ export function UserList({ users, currentUser }: UserListProps) {
             <div className='ml-auto'>
               <Button variant='default' className='h-8' onClick={() => dispatch(openTransferModal(user))}>
                 <ArrowRightLeft className='h-4 w-4' />
-
-                <span className='hidden sm:inline sm:ml-2'>Transfer money</span>
+                <span className='hidden sm:inline sm:ml-2'>{t('DialogTriggerText')}</span>
               </Button>
             </div>
           </div>
@@ -105,7 +106,7 @@ export function UserList({ users, currentUser }: UserListProps) {
       <Dialog open={isTransferModalOpen} onOpenChange={handleOpenChange}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Transfer to user {transferTargetUser?.username}</DialogTitle>
+            <DialogTitle>{t('title', { username: transferTargetUser?.username ?? '' })}</DialogTitle>
           </DialogHeader>
           {transferTargetUser && (
             <TransferForm
@@ -129,14 +130,15 @@ function TransferForm({
   currentUser: User;
   targetUser: User;
 }) {
+  const t = useTranslations('TransferDialog');
   const [isPending, startTransition] = useTransition();
 
   const formSchema = z.object({
     amount: z.coerce
       .number()
-      .gt(0, { message: 'The amount must be greater than zero' })
+      .gt(0, { message: t('gtError') })
       .max(currentUser.balance / 100, {
-        message: 'Insufficient funds',
+        message: t('maxError'),
       }),
   });
 
@@ -171,7 +173,7 @@ function TransferForm({
           name='amount'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Amount in {currentUser.currency}</FormLabel>
+              <FormLabel>{t('amountLabel', { currency: currentUser.currency })}</FormLabel>
               <FormControl>
                 <Input type='number' placeholder='0.00' step='0.01' min='0.01' disabled={isPending} {...field} />
               </FormControl>
@@ -182,12 +184,12 @@ function TransferForm({
 
         {showConversion && amountValue > 0 && !form.formState.errors.amount && (
           <p className='text-sm text-muted-foreground text-center'>
-            The recipient will receive: ≈ {formatCurrency(convertedAmountInCents, targetUser.currency)}
+            {t('recipientWillReceive', { amount: formatCurrency(convertedAmountInCents, targetUser.currency) })}
           </p>
         )}
 
         <Button type='submit' className='w-full' disabled={isPending || !amountValue}>
-          {isPending ? 'Sending...' : 'Transfer'}
+          {isPending ? t('submitButtonSending') : t('submitButton')}
         </Button>
       </form>
     </Form>

@@ -4,14 +4,19 @@ import { dbInstance } from '@/lib/db/dbInstance';
 import { comparePassword } from '@/lib/kysely/password';
 import { getSession } from '@/lib/kysely/session';
 import crypto from 'crypto';
-import { redirect } from 'next/navigation';
-import { FormState, loginFormSchema } from '@/lib/types/loginDefinitions';
+import { getLocale, getTranslations } from 'next-intl/server';
+
+import { FormState, createLoginFormSchema } from '@/lib/types/loginDefinitions';
+import { redirect } from '@/i18n/navigation';
 
 const WEEK = 7 * 24 * 60 * 60 * 1000;
 
 export const login = async (_state: FormState, formData: FormData) => {
+  const locale = await getLocale();
+  const t = await getTranslations('LoginPage');
+
   try {
-    const validatedFields = loginFormSchema.safeParse({
+    const validatedFields = createLoginFormSchema(t).safeParse({
       username: formData.get('username'),
       password: formData.get('password'),
     });
@@ -50,5 +55,5 @@ export const login = async (_state: FormState, formData: FormData) => {
     throw { message: 'Internal Server Error' };
   }
 
-  redirect('/users');
+  redirect({ href: '/users', locale });
 };

@@ -1,0 +1,32 @@
+{
+  "LoginPage": {
+    "title": "Login",
+    "usernameLabel": "Email",
+    "passwordLabel": "Password",
+    "submitButton": "Log In",
+    "submitButtonLoading": "Logging in...",
+    "invalidUsername": "Please enter a valid email address",
+    "invalidPassword": "Please enter a valid password"
+  },
+  "Navbar": {
+    "signedInAs": "Signed in as:",
+    "balance": "Balance:",
+    "logoutButton": "Logout"
+  },
+  "UsersPage": {
+    "title": "User List"
+  },
+  "TransferDialog": {
+    "title": "Transfer to {username}",
+    "amountLabel": "Amount in {currency}",
+    "gtError": "The amount must be greater than zero",
+    "maxError": "Insufficient funds",
+    "recipientWillReceive": "Recipient will receive: ≈ {amount}",
+    "DialogTriggerText": "Transfer money",
+    "submitButton": "Transfer",
+    "submitButtonSending": "Sending...",
+    "toastSuccessTitle": "Success",
+    "toastSuccessDescription": "Transfer completed.",
+    "toastErrorTitle": "Error"
+  }
+}

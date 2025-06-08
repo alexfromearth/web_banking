@@ -1,10 +1,13 @@
 'use server';
+import { getLocale } from 'next-intl/server';
 
 import { getSession } from '@/lib/kysely/session';
 import { dbInstance } from '@/lib/db/dbInstance';
-import { redirect } from 'next/navigation';
+import { redirect } from '@/i18n/navigation';
 
 export const logout = async () => {
+  const locale = await getLocale();
+
   try {
     const session = await getSession();
 
@@ -17,5 +20,8 @@ export const logout = async () => {
     console.error('logout error', error);
   }
 
-  redirect('/login');
+  redirect({
+    locale,
+    href: '/login',
+  });
 };

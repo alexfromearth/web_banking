@@ -1,0 +1,32 @@
+{
+  "LoginPage": {
+    "title": "Вход",
+    "usernameLabel": "Электронная почта",
+    "passwordLabel": "Пароль",
+    "submitButton": "Войти",
+    "submitButtonLoading": "Вход...",
+    "invalidUsername": "Введите корректный email",
+    "invalidPassword": "Введите корректный пароль"
+  },
+  "Navbar": {
+    "signedInAs": "Вы вошли как:",
+    "balance": "Баланс:",
+    "logoutButton": "Выйти"
+  },
+  "UsersPage": {
+    "title": "Список пользователей"
+  },
+  "TransferDialog": {
+    "title": "Перевод пользователю {username}",
+    "amountLabel": "Сумма в {currency}",
+    "gtError": "Сумма должна быть больше нуля",
+    "maxError": "Недостаточно средств",
+    "recipientWillReceive": "Получатель получит: ≈ {amount}",
+    "DialogTriggerText": "Сделать перевод",
+    "submitButton": "Перевести",
+    "submitButtonSending": "Отправка...",
+    "toastSuccessTitle": "Успех",
+    "toastSuccessDescription": "Перевод выполнен.",
+    "toastErrorTitle": "Ошибка"
+  }
+}
