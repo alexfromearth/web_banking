@@ -5,7 +5,7 @@ export const createLoginFormSchema = (t: ReturnType<typeof createTranslator<Mess
   z.object({
     username: z
       .string()
-      .email()
+      .email({ message: t('invalidUsername') })
       .min(4, { message: t('invalidUsername') }),
     password: z.string().min(4, { message: t('invalidPassword') }),
   });

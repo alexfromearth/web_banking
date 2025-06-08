@@ -46,9 +46,7 @@ export function UserList({ users, currentUser }: UserListProps) {
         if (user.id === targetUserId) {
           return { ...user, balance: user.balance + amountToCredit };
         }
-        if (user.id === currentUser.id) {
-          return { ...user, balance: user.balance - amountInCents };
-        }
+
         return user;
       });
     },
@@ -78,8 +76,6 @@ export function UserList({ users, currentUser }: UserListProps) {
     }
   }
 
-  const optimisticCurrentUser = optimisticUsers.find(u => u.id === currentUser.id) || currentUser;
-
   return (
     <>
       <div className='space-y-4'>
@@ -105,11 +101,7 @@ export function UserList({ users, currentUser }: UserListProps) {
             <DialogTitle>{t('title', { username: transferTargetUser?.username ?? '' })}</DialogTitle>
           </DialogHeader>
           {transferTargetUser && (
-            <TransferForm
-              onSubmit={handleTransfer}
-              currentUser={optimisticCurrentUser}
-              targetUser={transferTargetUser}
-            />
+            <TransferForm onSubmit={handleTransfer} currentUser={currentUser} targetUser={transferTargetUser} />
           )}
         </DialogContent>
       </Dialog>
