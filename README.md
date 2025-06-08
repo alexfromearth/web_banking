@@ -1,8 +1,24 @@
 # Web banking
 
-## Getting Started
+### Running with Docker
 
-### Prerequisites
+This is an alternative way to run the project if you don't want to manage a local Node.js environment.
+
+> **Prerequisite:** Ensure you have a `.env.local` file in the project root.
+
+1.  **Build the Docker image:**
+    ```bash
+    pnpm run build:docker
+    ```
+
+2.  **Run the container:**
+    ```bash
+    pnpm run run:docker
+    ```
+
+The application will be available at `http://localhost:3000`.
+
+### Running local
 
 - **Node.js**: This project requires **Node.js version 18.x**. It is recommended to use a version manager like `nvm` to ensure compatibility.
   ```bash

@@ -10,7 +10,9 @@
     "lint": "next lint",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:seed": "tsx scripts/seed.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "build:docker": "docker build --no-cache -t nextjs-web-banking .",
+    "run:docker": "docker run -p 3000:3000 --env-file .env.local --name web-banking nextjs-web-banking"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.0",
