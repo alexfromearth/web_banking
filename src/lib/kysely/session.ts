@@ -1,3 +1,4 @@
+'use server';
 import { getIronSession, IronSession, SessionOptions } from 'iron-session';
 import { cookies } from 'next/headers';
 import { Currency } from '@/lib/db/dbTypes';
@@ -12,7 +13,7 @@ export type SessionData = IronSession<{
   token: string;
 }>;
 
-export const sessionOptions = {
+const sessionOptions = {
   password: process.env.SESSION_SECRET as string,
   cookieName: 'web-banking-session',
   cookieOptions: {

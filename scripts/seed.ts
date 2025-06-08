@@ -1,4 +1,4 @@
-import { db } from '@/lib/db/db';
+import { dbInstance } from '@/lib/db/dbInstance';
 import { Currency } from '@/lib/db/dbTypes';
 import { hashPassword } from '@/lib/kysely/password';
 
@@ -40,7 +40,7 @@ async function seed() {
 
   try {
     for (const userData of seedUsers) {
-      const existingUser = await db
+      const existingUser = await dbInstance
         .selectFrom('users')
         .where('username', '=', userData.username)
         .select('id')
@@ -53,7 +53,7 @@ async function seed() {
 
       const password_hash = await hashPassword(userData.password);
 
-      await db
+      await dbInstance
         .insertInto('users')
         .values({
           username: userData.username,
@@ -70,7 +70,7 @@ async function seed() {
   } catch (error) {
     console.error('Error during seeding:', error);
   } finally {
-    await db.destroy();
+    await dbInstance.destroy();
   }
 }
 

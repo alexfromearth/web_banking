@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { promises as fs } from 'fs';
 import { Migrator, FileMigrationProvider } from 'kysely';
-import { db } from '@/lib/db/db';
+import { dbInstance } from '@/lib/db/dbInstance';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 
 async function migrateToLatest() {
   const migrator = new Migrator({
-    db,
+    db: dbInstance,
     provider: new FileMigrationProvider({
       fs,
       path,
@@ -34,7 +34,7 @@ async function migrateToLatest() {
     process.exit(1);
   }
 
-  await db.destroy();
+  await dbInstance.destroy();
 }
 
 migrateToLatest();

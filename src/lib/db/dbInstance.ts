@@ -6,6 +6,6 @@ const dialect = new SqliteDialect({
   database: new Database('db.sqlite'),
 });
 
-export const db = new Kysely<DatabaseTables>({
+export const dbInstance = new Kysely<DatabaseTables>({
   dialect,
 });

@@ -1,9 +1,14 @@
-import { Button } from '@/components/ui/button';
+import { redirect } from 'next/navigation';
+import { verifySession } from '@/app/actions/auth/verifySession';
 
-export default function Home() {
-  return (
-    <div>
-      <Button>Click me</Button>
-    </div>
-  );
+export default async function RootPage() {
+  const user = await verifySession();
+
+  if (user) {
+    redirect('/users');
+  } else {
+    redirect('/login');
+  }
+
+  return null;
 }
