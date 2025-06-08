@@ -7,7 +7,7 @@ export const createLoginFormSchema = (t: ReturnType<typeof createTranslator<Mess
       .string()
       .email()
       .min(4, { message: t('invalidUsername') }),
-    password: z.string().min(8, { message: t('invalidPassword') }),
+    password: z.string().min(4, { message: t('invalidPassword') }),
   });
 
 export type FormState =
